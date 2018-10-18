@@ -5,18 +5,18 @@ const app = express();
 app.get('/board', (req, res) => {
     res.json({
         lists: [{
-            title: 'Example list 1',
-            cards: [{
-                text: 'Example card 1'
+            title: 'To do list',
+            items: [{
+                text: 'Example item 1'
             }, {
-                text: 'Example card 2'
+                text: 'Example item 2'
             }]
         }, {
-            title: 'Example list 2',
-            cards: [{
-                text: 'Example card 1'
+            title: 'Gift list',
+            items: [{
+                text: 'Example item 1'
             }, {
-                text: 'Example card 2'
+                text: 'Example item 2'
             }]
         }]
     });

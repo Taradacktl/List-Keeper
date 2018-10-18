@@ -24,7 +24,7 @@ describe('<Board/>', () => {
         for (let i=0; i<10; i++) {
             seedLists.push({
                 title: `List ${i}`,
-                cards: []
+                items: []
             })
         }
     });

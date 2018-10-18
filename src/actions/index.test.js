@@ -1,8 +1,8 @@
 import {
     ADD_LIST,
     addList,
-    ADD_CARD,
-    addCard,
+    ADD_Item,
+    addItem,
     FETCH_BOARD_SUCCESS,
     fetchBoardSuccess,
     fetchBoard
@@ -17,12 +17,12 @@ describe('addList', () => {
     });
 });
 
-describe('addCard', () => {
+describe('addItem', () => {
     it('Should return the action', () => {
-        const text = 'Card text';
+        const text = 'Item text';
         const listIndex = 10;
-        const action = addCard(text, listIndex);
-        expect(action.type).toEqual(ADD_CARD);
+        const action = addItem(text, listIndex);
+        expect(action.type).toEqual(ADD_Item);
         expect(action.text).toEqual(text);
         expect(action.listIndex).toEqual(listIndex);
     });

@@ -9,17 +9,17 @@ export const trelloReducer = (state=initialState, action) => {
         return Object.assign({}, state, {
             lists: [...state.lists, {
                 title: action.title,
-                cards: []
+                items: []
             }]
         });
     }
-    else if (action.type === actions.ADD_CARD) {
+    else if (action.type === actions.ADD_Item) {
         let lists = state.lists.map((list, index) => {
             if (index !== action.listIndex) {
                 return list;
             }
             return Object.assign({}, list, {
-                cards: [...list.cards, {
+                items: [...list.items, {
                     text: action.text
                 }]
             });

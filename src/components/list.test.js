@@ -2,47 +2,47 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import {List} from './list';
-import Card from './card';
-import {addCard} from '../actions';
+import Item from './item';
+import {addItem} from '../actions';
 
 describe('<List />', () => {
-    const seedCards = [];
+    const seedItems = [];
     beforeAll(() => {
         for (let i=0; i<10; i++) {
-            seedCards.push({
-                text: `Card ${i}`
+            seedItems.push({
+                text: `Item ${i}`
             })
         }
     });
 
     it('Renders without crashing', () => {
-        shallow(<List title="Foo" cards={[]} />);
+        shallow(<List title="Foo" items={[]} />);
     });
 
     it('Renders the title', () => {
         const title = "Foo";
-        const wrapper = shallow(<List title={title} cards={[]} />);
+        const wrapper = shallow(<List title={title} items={[]} />);
         expect(wrapper.contains(<h3>{title}</h3>)).toEqual(true);
     });
 
-    it('Dispatches addCard from addCard', () => {
+    it('Dispatches addItem from addItem', () => {
         const dispatch = jest.fn();
         const index = 2;
         const wrapper = shallow(
-            <List cards={[]} index={index} dispatch={dispatch} />
+            <List items={[]} index={index} dispatch={dispatch} />
         );
         const instance = wrapper.instance();
-        const text = seedCards[0].text;
-        instance.addCard(text);
-        expect(dispatch).toHaveBeenCalledWith(addCard(text, index));
+        const text = seedItems[0].text;
+        instance.addItem(text);
+        expect(dispatch).toHaveBeenCalledWith(addItem(text, index));
     });
 
-    it('Renders the cards', () => {
-        const wrapper = shallow(<List cards={seedCards} />);
-        const cards = wrapper.find(Card);
-        expect(cards.length).toEqual(seedCards.length);
-        const firstCard = cards.first();
-        expect(firstCard.prop('text')).toEqual(seedCards[0].text);
+    it('Renders the items', () => {
+        const wrapper = shallow(<List items={seedItems} />);
+        const items = wrapper.find(Item);
+        expect(items.length).toEqual(seedItems.length);
+        const firstItem = items.first();
+        expect(firstItem.prop('text')).toEqual(seedItems[0].text);
     });
 });
 

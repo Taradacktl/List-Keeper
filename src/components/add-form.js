@@ -38,7 +38,7 @@ export default class AddForm extends React.Component {
         }
 
         return (
-            <form className="card add-form" onSubmit={this.onSubmit}>
+            <form className="item add-form" onSubmit={this.onSubmit}>
                 <input type="text" ref={input => this.textInput = input} />
                 <button>Add</button>
                 <button type="button" onClick={() => this.setEditing(false)}>

@@ -4,9 +4,9 @@ export const addList = title => ({
     title
 });
 
-export const ADD_CARD = 'ADD_CARD';
-export const addCard = (text, listIndex) => ({
-    type: ADD_CARD,
+export const ADD_Item = 'ADD_Item';
+export const addItem = (text, listIndex) => ({
+    type: ADD_Item,
     text,
     listIndex
 });
