@@ -28,7 +28,8 @@ export class Board extends React.Component {
 
         return (
             <div className="board">
-                <h2>{this.props.title}</h2>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.description}</h2>
                 <ul className="lists">
                     {lists}
                     <li className="add-list-wrapper">
@@ -44,7 +45,8 @@ export class Board extends React.Component {
 }
 
 Board.defaultProps = {
-    title: 'Board'
+    title: 'List Keeper',
+    description: 'Keep all your lists in one place'
 };
 
 const mapStateToProps = state => ({

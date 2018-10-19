@@ -21,11 +21,11 @@
 }
 
 .list .add-button:hover {
-    background: #BDBDBD;
+    background: #0D47A1;
 }
 
 .list .add-button a {
-    color: black;
+    color: white;
 }
 
 .board .add-form {

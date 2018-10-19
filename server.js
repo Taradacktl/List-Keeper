@@ -7,16 +7,16 @@ app.get('/board', (req, res) => {
         lists: [{
             title: 'To do list',
             items: [{
-                text: 'Example item 1'
+                text: 'Laundry'
             }, {
-                text: 'Example item 2'
+                text: 'Vacuum'
             }]
         }, {
-            title: 'Gift list',
+            title: 'Gifts list for Christmas',
             items: [{
-                text: 'Example item 1'
+                text: 'Susie-Scarf'
             }, {
-                text: 'Example item 2'
+                text: 'John-Slippers'
             }]
         }]
     });

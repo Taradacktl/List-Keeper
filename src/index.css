@@ -1,16 +1,15 @@
 body {
     font-family: sans-serif;
     padding: 10px;
-    background: #1976D2;
+    background: #FAF2AD;
   }
   
   h2, h3 {
     margin: 0;
   }
-  
-  h2 {
-    color: white;
-  }
+  h3 {
+    color: white
+}
   
   ul {
   padding: 0;
