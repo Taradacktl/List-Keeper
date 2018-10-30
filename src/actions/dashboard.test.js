@@ -30,18 +30,18 @@ describe('addItem', () => {
 
 describe('fetchBoardSuccess', () => {
     it('Should return the action', () => {
-        const board = {
+        const dashboard = {
             lists: []
         };
-        const action = fetchBoardSuccess(board);
+        const action = fetchBoardSuccess(dashboard);
         expect(action.type).toEqual(FETCH_BOARD_SUCCESS);
-        expect(action.board).toEqual(board);
+        expect(action.dashboard).toEqual(dashboard);
     });
 });
 
 describe('fetchBoard', () => {
     it('Should dispatch fetchBoardSuccess', () => {
-        const board = {
+        const dashboard = {
             lists: []
         };
 
@@ -49,15 +49,15 @@ describe('fetchBoard', () => {
             Promise.resolve({
                 ok: true,
                 json() {
-                    return board;
+                    return dashboard;
                 }
             })
         );
 
         const dispatch = jest.fn();
         return fetchBoard()(dispatch).then(() => {
-            expect(fetch).toHaveBeenCalledWith('/board');
-            expect(dispatch).toHaveBeenCalledWith(fetchBoardSuccess(board));
+            expect(fetch).toHaveBeenCalledWith('/dashboard');
+            expect(dispatch).toHaveBeenCalledWith(fetchBoardSuccess(dashboard));
         });
     });
 });

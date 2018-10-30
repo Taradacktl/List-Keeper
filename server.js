@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-app.get('/board', (req, res) => {
+app.get('/dashboard', (req, res) => {
     res.json({
         lists: [{
             title: 'To do list',

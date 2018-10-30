@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Board} from './board';
+import {Dashboard} from './dashboard';
 import List from './list';
 import {addList} from '../actions/dashboard';
 
@@ -18,7 +18,7 @@ jest.mock('../actions/dashboard', () => Object.assign({},
     }
 ));
 
-describe('<Board/>', () => {
+describe('<Dashboard/>', () => {
     let seedLists = [];
     beforeAll(() => {
         for (let i=0; i<10; i++) {
@@ -31,12 +31,12 @@ describe('<Board/>', () => {
 
     it('Renders without crashing', () => {
         const dispatch = jest.fn();
-        shallow(<Board title="Foo" lists={[]} dispatch={dispatch} />);
+        shallow(<Dashboard title="Foo" lists={[]} dispatch={dispatch} />);
     });
 
     it('Dispatches fetchBoard on mount', () => {
         const dispatch = jest.fn();
-        shallow(<Board title="Foo" lists={[]} dispatch={dispatch} />);
+        shallow(<Dashboard title="Foo" lists={[]} dispatch={dispatch} />);
         expect(dispatch).toHaveBeenCalledWith(mockFetchBoardAction);
     });
 
@@ -45,7 +45,7 @@ describe('<Board/>', () => {
         const title = "Foo";
         const description = "Bar";
         const wrapper = shallow(
-            <Board title={title} description={description} lists={[]} dispatch={dispatch} />
+            <Dashboard title={title} description={description} lists={[]} dispatch={dispatch} />
         );
         expect(wrapper.contains(<h1>{title}</h1>)).toEqual(true);
         expect(wrapper.contains(<h2>{description}</h2>)).toEqual(true);
@@ -54,7 +54,7 @@ describe('<Board/>', () => {
     it('Dispatches addList from addList', () => {
         const dispatch = jest.fn();
         const wrapper = shallow(
-            <Board lists={[]} dispatch={dispatch} />
+            <Dashboard lists={[]} dispatch={dispatch} />
         );
         // Ignore any previous calls to dispatch
         dispatch.mockClear();
@@ -66,7 +66,7 @@ describe('<Board/>', () => {
 
     it('Renders the lists', () => {
         const dispatch = jest.fn();
-        const wrapper = shallow(<Board lists={seedLists} dispatch={dispatch} />);
+        const wrapper = shallow(<Dashboard lists={seedLists} dispatch={dispatch} />);
         const lists = wrapper.find(List);
         expect(lists.length).toEqual(seedLists.length);
         const firstList = lists.first();

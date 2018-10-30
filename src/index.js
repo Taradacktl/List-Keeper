@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import Board from './components/board';
+import Dashboard from './components/dashboard';
 import store from './store';
 import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
-      <Board />
+      <Dashboard />
   </Provider>,
   document.getElementById('root')
 );

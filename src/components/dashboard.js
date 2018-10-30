@@ -6,9 +6,9 @@ import AddForm from './add-form';
 
 import {addList, fetchBoard} from '../actions/dashboard';
 
-import './board.css';
+import './dashboard.css';
 
-export class Board extends React.Component {
+export class Dashboard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -27,7 +27,7 @@ export class Board extends React.Component {
         ));
 
         return (
-            <div className="board">
+            <div className="dashboard">
                 <h1>{this.props.title}</h1>
                 <h2>{this.props.description}</h2>
                 <ul className="lists">
@@ -44,7 +44,7 @@ export class Board extends React.Component {
     }
 }
 
-Board.defaultProps = {
+Dashboard.defaultProps = {
     title: 'List Keeper',
     description: 'Keep all your lists in one place'
 };
@@ -53,4 +53,4 @@ const mapStateToProps = state => ({
     lists: state.lists
 });
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps)(Dashboard);

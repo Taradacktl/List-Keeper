@@ -68,11 +68,11 @@ describe('dashboardReducer', () => {
 
     describe('fetchBoardSuccess', () => {
         it('Should replace the entire state', () => {
-            const board = {
+            const dashboard = {
                 lists: [list1, list2]
             };
-            const state = dashboardReducer(undefined, fetchBoardSuccess(board));
-            expect(state).toEqual(board);
+            const state = dashboardReducer(undefined, fetchBoardSuccess(dashboard));
+            expect(state).toEqual(dashboard);
         });
     });
 });

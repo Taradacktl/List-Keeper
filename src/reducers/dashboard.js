@@ -30,7 +30,7 @@ export const dashboardReducer = (state=initialState, action) => {
         });
     }
     else if (action.type === actions.FETCH_BOARD_SUCCESS) {
-        return action.board;
+        return action.dashboard;
     }
     return state;
 };
