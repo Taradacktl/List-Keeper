@@ -3,14 +3,14 @@ import {shallow} from 'enzyme';
 
 import {Board} from './board';
 import List from './list';
-import {addList} from '../actions';
+import {addList} from '../actions/dashboard';
 
 // Mock the async fetchBoard action
 const mockFetchBoardAction = {
     type: 'FETCH_BOARD'
 };
-jest.mock('../actions', () => Object.assign({},
-    require.requireActual('../actions'),
+jest.mock('../actions/dashboard', () => Object.assign({},
+    require.requireActual('../actions/dashboard'),
     {
         fetchBoard: jest.fn().mockImplementation(() => {
             return mockFetchBoardAction;
@@ -43,10 +43,12 @@ describe('<Board/>', () => {
     it('Renders the title', () => {
         const dispatch = jest.fn();
         const title = "Foo";
+        const description = "Bar";
         const wrapper = shallow(
-            <Board title={title} lists={[]} dispatch={dispatch} />
+            <Board title={title} description={description} lists={[]} dispatch={dispatch} />
         );
         expect(wrapper.contains(<h2>{title}</h2>)).toEqual(true);
+        expect(wrapper.contains(<h3>{description}</h3>)).toEqual(true);
     });
 
     it('Dispatches addList from addList', () => {

@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 
 import {List} from './list';
 import Item from './item';
-import {addItem} from '../actions';
+import {addItem} from '../actions/dashboard';
 
 describe('<List />', () => {
     const seedItems = [];

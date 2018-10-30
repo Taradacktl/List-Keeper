@@ -6,7 +6,7 @@ import {
     FETCH_BOARD_SUCCESS,
     fetchBoardSuccess,
     fetchBoard
-} from './index';
+} from './dashboard';
 
 describe('addList', () => {
     it('Should return the action', () => {

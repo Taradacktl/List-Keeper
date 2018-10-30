@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
 
-import {trelloReducer} from './reducers';
+import {dashboardReducer} from './reducers/dashboard';
 
-export default createStore(trelloReducer, applyMiddleware(thunk));
+export default createStore(dashboardReducer, applyMiddleware(thunk));
 

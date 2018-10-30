@@ -1,10 +1,10 @@
-import * as actions from '../actions';
+import * as actions from '../actions/dashboard';
 
 const initialState = {
     lists: []
 };
 
-export const trelloReducer = (state=initialState, action) => {
+export const dashboardReducer = (state=initialState, action) => {
     if (action.type === actions.ADD_LIST) {
         return Object.assign({}, state, {
             lists: [...state.lists, {

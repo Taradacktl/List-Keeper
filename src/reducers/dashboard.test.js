@@ -1,7 +1,7 @@
-import {trelloReducer} from './index';
-import {addList, addItem, fetchBoardSuccess} from '../actions';
+import {dashboardReducer} from './dashboard';
+import {addList, addItem, fetchBoardSuccess} from '../actions/dashboard';
 
-describe('trelloReducer', () => {
+describe('dashboardReducer', () => {
     // Set up some dummy data
     const list1Title = 'List 1 test';
     const list2Title = 'List 2 test';
@@ -22,7 +22,7 @@ describe('trelloReducer', () => {
 
 
     it('Should set the initial state when nothing is passed in', () => {
-        const state = trelloReducer(undefined, {type: '__UNKNOWN'});
+        const state = dashboardReducer(undefined, {type: '__UNKNOWN'});
         expect(state).toEqual({
             lists: []
         });
@@ -30,15 +30,15 @@ describe('trelloReducer', () => {
 
     it('Should return the current state on an unknown action', () => {
         let currentState = {};
-        const state = trelloReducer(currentState, {type: '__UNKNOWN'});
+        const state = dashboardReducer(currentState, {type: '__UNKNOWN'});
         expect(state).toBe(currentState);
     });
 
     describe('addList', () => {
         it('Should add new lists', () => {
             let state;
-            state = trelloReducer(state, addList(list1Title));
-            state = trelloReducer(state, addList(list2Title));
+            state = dashboardReducer(state, addList(list1Title));
+            state = dashboardReducer(state, addList(list2Title));
             expect(state).toEqual({
                 lists: [list1, list2]
             });
@@ -51,9 +51,9 @@ describe('trelloReducer', () => {
             let state = {
                 lists: [list1, list2]
             };
-            state = trelloReducer(state, addItem(item1Text, 0));
-            state = trelloReducer(state, addItem(item2Text, 1));
-            state = trelloReducer(state, addItem(item3Text, 1));
+            state = dashboardReducer(state, addItem(item1Text, 0));
+            state = dashboardReducer(state, addItem(item2Text, 1));
+            state = dashboardReducer(state, addItem(item3Text, 1));
             expect(state).toEqual({
                 lists: [{
                     title: list1Title,
@@ -71,7 +71,7 @@ describe('trelloReducer', () => {
             const board = {
                 lists: [list1, list2]
             };
-            const state = trelloReducer(undefined, fetchBoardSuccess(board));
+            const state = dashboardReducer(undefined, fetchBoardSuccess(board));
             expect(state).toEqual(board);
         });
     });

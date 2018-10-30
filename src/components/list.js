@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Item from './item';
 import AddForm from './add-form';
 
-import {addItem} from '../actions';
+import {addItem} from '../actions/dashboard';
 
 export class List extends React.Component {
     addItem(text) {

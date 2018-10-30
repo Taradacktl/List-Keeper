@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import List from './list';
 import AddForm from './add-form';
 
-import {addList, fetchBoard} from '../actions';
+import {addList, fetchBoard} from '../actions/dashboard';
 
 import './board.css';
 
