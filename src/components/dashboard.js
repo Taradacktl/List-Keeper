@@ -9,9 +9,7 @@ import {addList, fetchBoard} from '../actions/dashboard';
 import './dashboard.css';
 
 export class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-
+    componentDidMount() {
         this.props.dispatch(fetchBoard());
     }
 
@@ -49,8 +47,10 @@ Dashboard.defaultProps = {
     description: 'Keep all your lists in one place'
 };
 
-const mapStateToProps = state => ({
-    lists: state.lists
-});
+const mapStateToProps = state => {
+    return{
+        lists: state.lists
+    };
+};
 
 export default connect(mapStateToProps)(Dashboard);

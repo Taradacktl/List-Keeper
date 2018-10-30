@@ -12,14 +12,18 @@
   },
   "dependencies": {
     "express": "^4.14.1",
+    "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "^2.2.0",
     "npm-run-all": "^4.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "run-p start:client start:server",
+    "start": "react-scripts start",
     "start:server": "node server.js",
     "start:client": "react-scripts start",
     "build": "react-scripts build",
