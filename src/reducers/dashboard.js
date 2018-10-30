@@ -1,11 +1,16 @@
-import * as actions from '../actions/dashboard';
+import {
+    ADD_LIST,
+    ADD_Item,
+    FETCH_BOARD_SUCCESS
+} from '../actions/dashboard';
 
 const initialState = {
+
     lists: []
 };
 
 export const dashboardReducer = (state=initialState, action) => {
-    if (action.type === actions.ADD_LIST) {
+    if (action.type === ADD_LIST) {
         return Object.assign({}, state, {
             lists: [...state.lists, {
                 title: action.title,
@@ -13,7 +18,7 @@ export const dashboardReducer = (state=initialState, action) => {
             }]
         });
     }
-    else if (action.type === actions.ADD_Item) {
+    else if (action.type === ADD_Item) {
         let lists = state.lists.map((list, index) => {
             if (index !== action.listIndex) {
                 return list;
@@ -29,7 +34,7 @@ export const dashboardReducer = (state=initialState, action) => {
             lists
         });
     }
-    else if (action.type === actions.FETCH_BOARD_SUCCESS) {
+    else if (action.type === FETCH_BOARD_SUCCESS) {
         return action.dashboard;
     }
     return state;
