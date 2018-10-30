@@ -40,15 +40,15 @@ describe('<Board/>', () => {
         expect(dispatch).toHaveBeenCalledWith(mockFetchBoardAction);
     });
 
-    it('Renders the title', () => {
+    it('Renders the title and description', () => {
         const dispatch = jest.fn();
         const title = "Foo";
         const description = "Bar";
         const wrapper = shallow(
             <Board title={title} description={description} lists={[]} dispatch={dispatch} />
         );
-        expect(wrapper.contains(<h2>{title}</h2>)).toEqual(true);
-        expect(wrapper.contains(<h3>{description}</h3>)).toEqual(true);
+        expect(wrapper.contains(<h1>{title}</h1>)).toEqual(true);
+        expect(wrapper.contains(<h2>{description}</h2>)).toEqual(true);
     });
 
     it('Dispatches addList from addList', () => {
