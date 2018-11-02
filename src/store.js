@@ -12,7 +12,6 @@ import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
 import protectedDataReducer from './reducers/protected-data';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
-import {dashboardReducer} from './reducers/dashboard'
 
 
 const store = createStore(
@@ -21,7 +20,6 @@ const store = createStore(
         auth: authReducer,
         protectedData: protectedDataReducer
     }),
-    dashboardReducer,
     applyMiddleware(thunk)
 );
 
