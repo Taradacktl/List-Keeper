@@ -2,6 +2,13 @@ language: node_js
 node_js: node
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
-  - CI=true
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: Z3Gx9Z1rwRNF86dQrIwfkB13VP7MhInRS4ciCLPzc51YOnPqu/174Hu9bmkjE3EENRycOJxzYJfexQLKwDtmoqVp64Kw0JUkpPJAFLf4w4SAC08nGEm0wK2/AGNNSN30v5kwkjy5eMn0mcQnLG2PXb2DOCxN16JP1TkNMvHZ+OvZ66C+PzbFP5OHUZbg4f3MKhTbEaDJQfRpRjGOD4NOSwMgxx1sLGM88WAYjrAiHYvhUl0sviS3Ik8kw0udtMqI67IWqOS3puys+0rBtcutIq7CrpAQOO7Lh7TqW7O3jr0F16yFvYtQo/KtSuK80XwX/JBdFLG+M9b7Nt5Mi0FEfcv7mR94s8QnnKYq2tM4nw72c0/Qzh2+V+4KzCUoJhp7YbXOYCdi/s2IQNCiEV4LJFj4Qs7Mih9jZQVkbUdLedJwxPlbqzk9BvbcryNvAyb9sbtGYMcIvvxH4mFbxWgJ9tT0pQBqsDxXurfC9oA0bClrL+l3l++cgCEs8NgkwoAXLrMSxNXsTFD+ESYJXf/GzUkPbs+M4MSh8nOEg5UF2U7PrQ768kaLO0UpcHST6NtfCrjA1i5ya6DVV1OJghavoIqAjyVUKHiM0z3pYuZUGuaHQPHd9mLc/axuO/xj+K+KiI3NivNJk5PPli780xBAUB6qqiCAXmLGqvhR58sQdTg=
+  app: List-Keeper
+  on:
+    repo: Taradacktl/List-Keeper
