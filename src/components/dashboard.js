@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import RequiresLogin from './requires-login';
 import List from './list';
 import AddForm from './add-form';
 
@@ -13,7 +13,7 @@ export class Dashboard extends React.Component {
         this.props.dispatch(fetchBoard());
     }
 
-    addList(title) {
+    addList=(title) => {
         this.props.dispatch(addList(title));
     }
 
@@ -23,7 +23,6 @@ export class Dashboard extends React.Component {
                 <List index={index} {...list} />
             </li>
         ));
-
         return (
             <div className="dashboard">
                 <h1>{this.props.title}</h1>
@@ -54,4 +53,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+export default RequiresLogin()(connect(mapStateToProps)(Dashboard));
