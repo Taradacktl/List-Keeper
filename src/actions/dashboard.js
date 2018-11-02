@@ -1,13 +1,15 @@
 export const ADD_LIST = 'ADD_LIST';
-export const addList = title => ({
+export const addList = (title, boardId)  => ({
     type: ADD_LIST,
-    title
+    title,
+    boardId,
 });
 
 export const ADD_Item = 'ADD_Item';
-export const addItem = (text, listIndex) => ({
+export const addItem = (text, boardId, listIndex) => ({
     type: ADD_Item,
     text,
+    boardId,
     listIndex
 });
 

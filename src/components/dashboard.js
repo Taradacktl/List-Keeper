@@ -14,20 +14,20 @@ export class Dashboard extends React.Component {
     }
 
     addList(title) {
-        this.props.dispatch(addList(title));
+        this.props.dispatch(addList(title, this.props.match.params.boardId));
     }
 
     render() {
         const lists = this.props.lists.map((list, index) => (
             <li className="list-wrapper" key={index}>
-                <List index={index} {...list} />
+                <List index={index} boardId={this.props.match.params.boardId} {...list} />
             </li>
         ));
 
         return (
             <div className="dashboard">
-                <h1>{this.props.title}</h1>
-                <h2>{this.props.description}</h2>
+            
+                <h3>{this.props.match.params.boardId}</h3>
                 <ul className="lists">
                     {lists}
                     <li className="add-list-wrapper">
@@ -43,13 +43,19 @@ export class Dashboard extends React.Component {
 }
 
 Dashboard.defaultProps = {
-    title: 'List Keeper',
-    description: 'Keep all your lists in one place'
+    title: 'List Keeper'
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
+    const dashboard = Object.assign(
+        {},
+        {
+            lists: []
+        },
+        state.dashboards[props.match.params.boardId]
+    );
     return{
-        lists: state.lists
+        lists: dashboard.lists
     };
 };
 
