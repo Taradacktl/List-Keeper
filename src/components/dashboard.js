@@ -19,6 +19,7 @@ export class Dashboard extends React.Component {
 
     render() {
         const lists = this.props.lists.map((list, index) => (
+            
             <li className="list-wrapper" key={index}>
                 <List index={index} {...list} />
             </li>
@@ -46,11 +47,9 @@ Dashboard.defaultProps = {
     description: 'Keep all your lists in one place'
 };
 
-const mapStateToProps = state => {
-    
-    return{
-        lists: state.lists
-    };
-};
+const mapStateToProps = state => ({
+
+        lists: state.protectedData.lists
+});
 
 export default RequiresLogin()(connect(mapStateToProps)(Dashboard));

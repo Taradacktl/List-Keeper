@@ -11,8 +11,7 @@ import {
 
 const initialState = {
     lists: [],
-    data: '',
-    error: null
+    
 };
 
 export default function reducer(state = initialState, action) {
