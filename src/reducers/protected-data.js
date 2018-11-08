@@ -6,7 +6,9 @@ import {
 import {
     ADD_LIST,
     ADD_Item,
-    FETCH_BOARD_SUCCESS
+    FETCH_BOARD_SUCCESS,
+    DASHBOARD_ERROR,
+    DASHBOARD_REQUEST,
 } from '../actions/dashboard';
 
 const initialState = {
@@ -34,6 +36,7 @@ export default function reducer(state = initialState, action) {
             }]
         });
     }
+
     else if (action.type === ADD_Item) {
         let lists = state.lists.map((list, index) => {
             if (index !== action.listIndex) {
@@ -50,8 +53,20 @@ export default function reducer(state = initialState, action) {
             lists
         });
     }
+
     else if (action.type === FETCH_BOARD_SUCCESS) {
         return action.dashboard;
+    }
+
+    else if (action.type === DASHBOARD_REQUEST) {
+        return Object.assign({}, state, {
+          error: null
+        });
+
+    } else if (action.type === DASHBOARD_ERROR) {
+        return Object.assign({}, state, {
+          error: action.error
+        });
     }
     return state;
 };
