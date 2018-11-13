@@ -32,7 +32,7 @@ export const fetchBoardSuccess = dashboard => ({
 // };
 
 export const fetchBoard = () => (dispatch, getState) => {
-    dispatch(dashboardRequest());
+    dispatch(fetchBoardSuccess());
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/dashboard`, {
         method: 'POST',
@@ -44,20 +44,38 @@ export const fetchBoard = () => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(data => data.json())
         .then(dataObj => {
-            dispatch({ type: 'DASHBORD_FETCH_SUCCESS', data: dataObj })
+            dispatch({ type: 'DASHBOARD_FETCH_SUCCESS', data: dataObj })
         }).catch(err => {
-            dispatch({ type: 'DASHBORD_FETCH_ERROR' })
+            dispatch({ type: 'DASHBOARD_FETCH_ERROR' })
         })
 }
 
-export const DASHBOARD_REQUEST = 'DASHBOARD_REQUEST';
-export const dashboardRequest = () => ({
-  type: DASHBOARD_REQUEST
-});
+export const updateDashboard = dashboard => (dispatch, getState) => {
+    dispatch(dashboardRequest());
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/dashboard/${dashboard.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`
+      },
+      body: JSON.stringify(dashboard)
+    })
+      .then(res => normalizeResponseErrors(res))
+      .then(res => res.json())
+      .catch((err) => {
+        dispatch(dashboardError(err));
+      });
+  };
 
-export const DASHBOARD_SUCCESS = 'DASHBOARD_SUCCESS';
-export const dashboardSuccess = data => ({
-  type: DASHBOARD_SUCCESS,
+// export const DASHBOARD_REQUEST = 'DASHBOARD_REQUEST';
+// export const dashboardRequest = () => ({
+//   type: DASHBOARD_REQUEST
+// });
+
+export const DASHBOARD_REQUEST = 'DASHBOARD_REQUEST';
+export const dashboardRequest = data => ({
+  type: DASHBOARD_REQUEST,
   data
 });
 

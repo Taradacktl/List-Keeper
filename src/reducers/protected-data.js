@@ -8,7 +8,6 @@ import {
     ADD_Item,
     FETCH_BOARD_SUCCESS,
     DASHBOARD_ERROR,
-    DASHBOARD_REQUEST,
 } from '../actions/dashboard';
 
 const initialState = {
@@ -54,11 +53,11 @@ export default function reducer(state = initialState, action) {
         });
     }
 
-    else if (action.type === FETCH_BOARD_SUCCESS) {
-        return action.dashboard;
-    }
+    // else if (action.type === FETCH_BOARD_SUCCESS) {
+    //     return action.dashboard;
+    // }
 
-    else if (action.type === DASHBOARD_REQUEST) {
+    else if (action.type === FETCH_BOARD_SUCCESS) {
         return Object.assign({}, state, {
           error: null
         });
