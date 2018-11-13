@@ -1,17 +1,20 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
+import uuid from 'uuid'
 
 export const ADD_LIST = 'ADD_LIST';
 export const addList = title  => ({
     type: ADD_LIST,
-    title
+    title,
+    id:uuid.v4(),
 });
 
 export const ADD_Item = 'ADD_Item';
 export const addItem = (text, listIndex) => ({
     type: ADD_Item,
     text,
-    listIndex
+    listIndex,
+    id:uuid.v4(),
 });
 
 export const FETCH_BOARD_SUCCESS = 'FETCH_BOARD_SUCCESS';
@@ -30,6 +33,15 @@ export const fetchBoardSuccess = dashboard => ({
 //         dispatch(fetchBoardSuccess(dashboard));
 //     });
 // };
+
+
+export const saveItem = (text, listIndex) => (dispatch, getState) => {
+    //console.log(text, listIndex, getState())
+    dispatch(addItem(text, listIndex))
+    const list = getState().protectedData.lists[listIndex]
+
+    debugger
+}
 
 export const fetchBoard = () => (dispatch, getState) => {
     dispatch(fetchBoardSuccess());
