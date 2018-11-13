@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import Item from './item';
 import AddForm from './add-form';
 
-import {addItem} from '../actions/dashboard';
+import {saveItem} from '../actions/dashboard';
 
 export class List extends React.Component {
     addItem(text) {
-        this.props.dispatch(addItem(text, this.props.index));
+        this.props.dispatch(saveItem(text, this.props.index));
     }
 
     render() {

@@ -31,6 +31,7 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             lists: [...state.lists, {
                 title: action.title,
+                id: action.id,
                 items: []
             }]
         });
@@ -43,7 +44,8 @@ export default function reducer(state = initialState, action) {
             }
             return Object.assign({}, list, {
                 items: [...list.items, {
-                    text: action.text
+                    text: action.text,
+                    id: action.id,
                 }]
             });
         });
