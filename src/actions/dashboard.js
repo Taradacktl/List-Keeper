@@ -39,9 +39,31 @@ export const saveItem = (text, listIndex) => (dispatch, getState) => {
     //console.log(text, listIndex, getState())
     dispatch(addItem(text, listIndex))
     const list = getState().protectedData.lists[listIndex]
-
-    debugger
+    saveItemToServer(list, dispatch, getState)
+    // debugger
 }
+
+export const saveItemToServer = (list, dispatch, getState) => {
+    
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/auth/list`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+        },
+        body: JSON.stringify(list)
+
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(data => data.json())
+        .then(dataObj => {
+            dispatch({ type: 'DASHBOARD_FETCH_SUCCESS', data: dataObj })
+        }).catch(err => {
+            dispatch({ type: 'DASHBOARD_FETCH_ERROR' })
+        })
+}
+
 
 export const fetchBoard = () => (dispatch, getState) => {
     dispatch(fetchBoardSuccess());
