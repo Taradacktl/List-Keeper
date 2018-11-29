@@ -1,20 +1,23 @@
-import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
+import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
 import uuid from 'uuid'
 
 export const ADD_LIST = 'ADD_LIST';
-export const addList = title  => ({
-    type: ADD_LIST,
-    title,
-    id:uuid.v4(),
-});
+export const addList = title => {
+    const ret = {
+        type: ADD_LIST,
+        title,
+    }
+    return ret
+}
+
 
 export const ADD_Item = 'ADD_Item';
 export const addItem = (text, listIndex) => ({
     type: ADD_Item,
     text,
     listIndex,
-    id:uuid.v4(),
+    id: uuid.v4(),
 });
 
 export const FETCH_BOARD_SUCCESS = 'FETCH_BOARD_SUCCESS';
@@ -34,7 +37,7 @@ export const fetchBoardSuccess = dashboard => ({
 //     });
 // };
 
-
+//TODO rewrite this fn
 export const saveItem = (text, listIndex) => (dispatch, getState) => {
     //console.log(text, listIndex, getState())
     dispatch(addItem(text, listIndex))
@@ -44,7 +47,7 @@ export const saveItem = (text, listIndex) => (dispatch, getState) => {
 }
 
 export const saveItemToServer = (list, dispatch, getState) => {
-    
+
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/auth/list`, {
         method: 'POST',
@@ -58,7 +61,9 @@ export const saveItemToServer = (list, dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(data => data.json())
         .then(dataObj => {
-            dispatch({ type: 'DASHBOARD_FETCH_SUCCESS', data: dataObj })
+            console.log('Got list object from server', dataObj)
+
+            dispatch({ type: FETCH_BOARD_SUCCESS, data: dataObj })
         }).catch(err => {
             dispatch({ type: 'DASHBOARD_FETCH_ERROR' })
         })
@@ -78,7 +83,7 @@ export const fetchBoard = () => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(data => data.json())
         .then(dataObj => {
-            dispatch({ type: 'DASHBOARD_FETCH_SUCCESS', data: dataObj })
+            dispatch({ type: FETCH_BOARD_SUCCESS, data: dataObj })
         }).catch(err => {
             dispatch({ type: 'DASHBOARD_FETCH_ERROR' })
         })
@@ -88,19 +93,19 @@ export const updateDashboard = dashboard => (dispatch, getState) => {
     dispatch(dashboardRequest());
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/dashboard/${dashboard.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`
-      },
-      body: JSON.stringify(dashboard)
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+        },
+        body: JSON.stringify(dashboard)
     })
-      .then(res => normalizeResponseErrors(res))
-      .then(res => res.json())
-      .catch((err) => {
-        dispatch(dashboardError(err));
-      });
-  };
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .catch((err) => {
+            dispatch(dashboardError(err));
+        });
+};
 
 // export const DASHBOARD_REQUEST = 'DASHBOARD_REQUEST';
 // export const dashboardRequest = () => ({
@@ -109,14 +114,14 @@ export const updateDashboard = dashboard => (dispatch, getState) => {
 
 export const DASHBOARD_REQUEST = 'DASHBOARD_REQUEST';
 export const dashboardRequest = data => ({
-  type: DASHBOARD_REQUEST,
-  data
+    type: DASHBOARD_REQUEST,
+    data
 });
 
 export const DASHBOARD_ERROR = 'DASHBOARD_ERROR';
 export const dashboardError = error => ({
-  type: DASHBOARD_ERROR,
-  error
+    type: DASHBOARD_ERROR,
+    error
 });
 
 fetchBoard()
